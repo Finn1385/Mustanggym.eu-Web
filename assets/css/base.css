@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "Akrobat";
+  src: url("../fonts/Akrobat-Regular.otf") format("opentype"), url("../fonts/Akrobat-Regular.woff") format("woff"), url("../fonts/Akrobat-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-size: normal;
+}
+@font-face {
+  font-family: "Akrobat";
+  src: url("../fonts/Akrobat-Bold.otf") format("opentype"), url("../fonts/Akrobat-Bold.woff") format("woff"), url("../fonts/Akrobat-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-size: normal;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.ttf") format("truetype"), url("../fonts/BebasNeue-Regular.woff") format("woff"), url("../fonts/BebasNeue-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-size: normal;
+}
+* {
+  --red: #a4161a;
+  --white: #f5f3f4;
+  --blue: #161a1d;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --content-padding: 80px;
+  font-family: "Akrobat", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html {
+  background-color: var(--blue);
+  padding: 0 var(--content-padding);
+}
+
+nav {
+  padding: 0 var(--content-padding);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(180deg, #161a1d 0%, rgba(22, 26, 29, 0.8) 50%, rgba(22, 26, 29, 0.6) 80%, rgba(22, 26, 29, 0.35) 90%, rgba(22, 26, 29, 0) 100%);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a.logo {
+  position: relative;
+}
+nav a.logo img {
+  width: 96px;
+}
+nav a.logo::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 35px;
+  height: 35px;
+  background: var(--white);
+  filter: blur(15px);
+  opacity: 0.75;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s ease opacity;
+}
+nav a.logo:hover::before {
+  opacity: 1;
+}
+nav ul.links {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+nav ul.links a {
+  margin-left: 40px;
+  text-decoration: none;
+  font-family: "Bebas Neue";
+  font-size: 1.75rem;
+  color: var(--white);
+  transition: 0.3s ease color;
+}
+nav ul.links a:hover {
+  color: var(--red);
+}
