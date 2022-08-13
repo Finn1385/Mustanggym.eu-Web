@@ -52,6 +52,9 @@ nav {
   align-items: center;
   z-index: 10;
 }
+nav #menu-control {
+  display: none;
+}
 nav a.logo {
   position: relative;
 }
@@ -95,6 +98,18 @@ nav ul.links a {
 nav ul.links a:hover {
   color: var(--red);
 }
+nav label.menu-open,
+nav label.menu-close {
+  font-size: 2.5rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s ease color;
+  display: none;
+}
+nav label.menu-open:hover,
+nav label.menu-close:hover {
+  color: var(--red);
+}
 
 @media only screen and (max-width: 1200px) {
   * {
@@ -109,5 +124,36 @@ nav ul.links a:hover {
 @media only screen and (max-width: 980px) {
   * {
     --content-padding: 40px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  nav ul.links {
+    position: absolute;
+    right: -100%;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blue);
+    flex-direction: column;
+    transition: 0.7s ease right;
+  }
+  nav ul.links li {
+    margin: 40px 0;
+  }
+  nav ul.links li a {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+  nav ul.links label.menu-close {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: var(--content-padding);
+  }
+  nav label.menu-open {
+    display: block;
+  }
+  nav #menu-control:checked ~ ul.links {
+    right: 0;
   }
 }

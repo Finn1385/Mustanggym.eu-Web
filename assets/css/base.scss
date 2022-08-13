@@ -68,6 +68,10 @@ nav {
   align-items: center;
   z-index: 10;
 
+  #menu-control {
+    display: none;
+  }
+
   a.logo {
     position: relative;
     img {
@@ -118,6 +122,19 @@ nav {
       }
     }
   }
+
+  label.menu-open,
+  label.menu-close {
+    font-size: 2.5rem;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.3s ease color;
+    display: none;
+
+    &:hover {
+      color: var(--red);
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -135,5 +152,44 @@ nav {
 @media only screen and (max-width: 980px) {
   * {
     --content-padding: 40px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    ul.links {
+      position: absolute;
+      right: -100%;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--blue);
+      flex-direction: column;
+      transition: 0.7s ease right;
+
+      li {
+        margin: 40px 0;
+
+        a {
+          margin: 0;
+          font-size: 2.5rem;
+        }
+      }
+
+      label.menu-close {
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: var(--content-padding);
+      }
+    }
+
+    label.menu-open {
+      display: block;
+    }
+
+    & #menu-control:checked ~ ul.links {
+      right: 0;
+    }
   }
 }
