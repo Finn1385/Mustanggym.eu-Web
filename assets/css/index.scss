@@ -1,0 +1,195 @@
+.background {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/bg-fitness.jpg");
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 0;
+  top: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      90deg,
+      rgba(22, 26, 29, 0.5) 0%,
+      rgba(22, 26, 29, 0.6) 15%,
+      rgba(22, 26, 29, 0.75) 25%,
+      rgba(22, 26, 29, 0.9) 70%,
+      rgba(22, 26, 29, 0.95) 100%
+    );
+  }
+}
+
+.content {
+  width: 100vw;
+  padding: var(--content-padding);
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: calc(0px - var(--content-padding));
+
+  .logo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img.logo {
+      width: 450px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 200px;
+      height: 200px;
+      background: var(--white);
+      filter: blur(75px);
+      opacity: 0.75;
+      border-radius: 50%;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s ease opacity;
+    }
+
+    p.motto {
+      color: var(--white);
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      a.social {
+        padding: 10px 20px;
+        svg {
+          height: 32px;
+          fill: var(--white);
+          transition: 0.3s ease fill;
+        }
+        span {
+          font-size: 2.1rem;
+          color: var(--white);
+          transition: 0.3s ease color;
+        }
+
+        &:hover {
+          svg {
+            fill: var(--red);
+          }
+          span {
+            color: var(--red);
+          }
+        }
+      }
+    }
+  }
+
+  ul.links {
+    max-width: 45%;
+    list-style: none;
+
+    li {
+      padding: 30px 0;
+      text-align: right;
+      width: 80%;
+      float: right;
+      position: relative;
+      cursor: pointer;
+
+      a {
+        font-family: "Bebas Neue";
+        font-size: 3rem;
+        text-decoration: none;
+        color: var(--white);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        right: calc(0px - var(--content-padding));
+        top: 0;
+        width: 0;
+        height: 100%;
+        background: linear-gradient(
+          270deg,
+          rgba(245, 243, 244, 0.2) 0%,
+          rgba(245, 243, 244, 0) 100%
+        );
+        transition: 0.3s ease width;
+        z-index: -1;
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          width: calc(100% + var(--content-padding));
+        }
+      }
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: lighter;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--white);
+      transition: 0.3s ease text-decoration-color;
+      text-decoration: underline;
+      text-decoration-color: rgba($color: #000000, $alpha: 0);
+
+      &:hover {
+        text-decoration-color: var(--white);
+      }
+    }
+  }
+
+  a.address {
+    font-weight: bold;
+    color: var(--white);
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: rgba($color: #000000, $alpha: 0);
+    margin-bottom: 20px;
+    transition: 0.3s ease text-decoration-color;
+
+    &:hover {
+      text-decoration-color: var(--white);
+    }
+  }
+}
