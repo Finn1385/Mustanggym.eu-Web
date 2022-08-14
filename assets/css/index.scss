@@ -135,7 +135,7 @@
           rgba(245, 243, 244, 0.2) 0%,
           rgba(245, 243, 244, 0) 100%
         );
-        transition: 0.3s ease width;
+        transition: 0.3s ease width, 0.3s ease height;
         z-index: -1;
       }
 
@@ -151,6 +151,7 @@
 
 footer {
   position: absolute;
+  width: 100%;
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
@@ -190,6 +191,100 @@ footer {
 
     &:hover {
       text-decoration-color: var(--white);
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .content {
+    .logo {
+      img.logo {
+        width: 350px;
+      }
+    }
+
+    ul.links {
+      max-width: 50%;
+      li {
+        a {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .content {
+    .logo {
+      img.logo {
+        width: 300px;
+      }
+    }
+
+    ul.links {
+      li {
+        a {
+          font-size: 2.25rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .content {
+    flex-direction: column;
+    justify-content: center;
+
+    .logo {
+      margin-bottom: 10px;
+
+      img.logo {
+        width: 250px;
+      }
+    }
+
+    ul.links {
+      width: 100%;
+      max-width: 100%;
+      li {
+        padding: 15px 0;
+        text-align: center;
+        width: 100%;
+        a {
+          font-size: 2rem;
+        }
+
+        &:focus,
+        &:hover {
+          &::before {
+            width: calc(100% + (var(--content-padding) * 2));
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .content {
+    ul.links {
+      li {
+        a {
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+  footer {
+    p {
+      font-size: 0.8rem;
+    }
+
+    a.address {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
   }
 }
