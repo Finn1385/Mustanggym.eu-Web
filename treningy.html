@@ -6,11 +6,245 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mustang Gym | Skupinové tréningy</title>
-  <link rel="stylesheet" href="assets/css/base.min.css">
   <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/base.min.css">
+  <link rel="stylesheet" href="assets/css/treningy.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
+  <nav>
+    <input type="checkbox" id="menu-control">
+    <a href="/" class="logo"><img src="assets/images/logo.svg" alt="Mustang Gym Logo"></a>
+    <ul class="links">
+      <li><a href="/">Domov</a></li>
+      <li><a href="#rozvrh">Rozvrh</a></li>
+      <li><a href="#cennik">Cenník</a></li>
+      <li><a href="#treningy">Tréningy</a></li>
+      <li><a href="#galeria">Galéria</a></li>
+      <label for="menu-control" class="menu-close material-symbols-outlined">close</label>
+    </ul>
+    <label for="menu-control" class="menu-open material-symbols-outlined">menu</label>
+  </nav>
+
+  <section id="rozvrh">
+    <div class="background"></div>
+    <div class="separator"></div>
+    <h1 class="title">Rozvrh</h1>
+    <div class="day">
+      <div class="title">
+        <span class="material-symbols-outlined icon">calendar_month</span>
+        <h2>Pondelok</h2>
+      </div>
+      <div class="trainings" style="grid-template-columns: 50% 50%;">
+        <div class="training">
+          <p class="time">8:00</p>
+          <p class="type">Ranný tréning</p>
+        </div>
+        <div class="training">
+          <p class="time">18:10</p>
+          <p class="type">Kruhový tréning</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="title">
+        <span class="material-symbols-outlined icon">calendar_month</span>
+        <h2>Streda</h2>
+      </div>
+      <div class="trainings" style="grid-template-columns: 50% 50%;">
+        <div class="training">
+          <p class="time">8:00</p>
+          <p class="type">Ranný tréning</p>
+        </div>
+        <div class="training">
+          <p class="time">18:10</p>
+          <p class="type">Tabata</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="title">
+        <span class="material-symbols-outlined icon">calendar_month</span>
+        <h2>Piatok</h2>
+      </div>
+      <div class="trainings" style="grid-template-columns: 50% 50%;">
+        <div class="training">
+          <p class="time">8:00</p>
+          <p class="type">Ranný tréning</p>
+        </div>
+        <div class="training">
+          <p class="time">18:10</p>
+          <p class="type">Kruhový tréning</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cennik">
+    <h1 class="title">Cenník</h1>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">confirmation_number</span>
+        <h2>Vstupy</h2>
+      </div>
+      <p>Jednorázový vstup <span class="price">4,00€</span></p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">card_membership</span>
+        <h2>Permanentky</h2>
+      </div>
+      <p>2-mesačná permanentka na 10 vstupov <span class="price">35,00€</span></p>
+    </section>
+    <p class="last-edit">Posledná úprava cenníka - <b>15.8.2022</b></p>
+  </section>
+
+  <section id="treningy">
+    <h1 class="title">Tréningy</h1>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Kruhový tréning</h2>
+      </div>
+      <p class="desc">Vysoko intenzívny tréning s vytrvalostno-silovým zameraním. Cvičí sa na stanoviskách, skupinovou
+        formou, používajú sa jednoduché cvičenia zamerané na všetky svalové skupiny. Cieľom je budovanie kondície a
+        účinnejšie spaľovanie tukov.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Strong Body</h2>
+      </div>
+      <p class="desc">Silový tréning na hudbu. Účastníci čelia novým výzvam a zároveň zvyšujú svalovú silu. Počas hodiny
+        cvičenia s činkami pracujeme na vývoji všetkých hlavných svalových skupín. Sami sa rozhodujeme, akú záťaž
+        použijeme tak, aby sme správne stimulovali telo a dosiahli lepšie výsledky. Fantastický workout pre všetkých.
+      </p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>TRX</h2>
+      </div>
+      <p class="desc">Jedinečný cvičebný systém pre efektívny tréning kdekoľvek a v každom veku. Ak hľadáte kvalitný
+        funkčný tréning pre dosiahnutie Vašej najlepšej fyzickej kondície, tak vyskúšajte TRX. Počas celého tréningu sa
+        cvičí len s váhou vlastného tela a to vo všetkých troch rovinách pohybu, čo je optimálne pre uplatnenie všetkých
+        pravidiel funkčného tréningu. Intenzitu cvičenia je možné ľahko zvýšiť či znížiť zmenou postoja cvičenca k
+        závesnému bodu. Čím je cvičenec bližšie k závesnému bodu, tým je intenzita vyššia a naopak. Pri optimálnej
+        intenzite cvičenia sa posledné opakovania vykonávajú do takmer úplného vyčerpania svalovej sily.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>World Jumping</h2>
+      </div>
+      <p class="desc">Prepracovaný zábavný program, motivujúca hudba, balansovanie pod vedením inštruktora. Lepšia
+        koordinácia a rovnováha, tým pádom vyššie sebavedomie. Žiadne choreografie, len zábava a účinné formovanie
+        postavy! Vďaka mäkkým dopadom na výplet trampolíny nezaťažuje kĺby. Práve naopak, spevňuje kĺbové väzivo dolných
+        končatín. Program vychádza z pocitu voľnosti a úprimnej radosti z pohybu. Jumping sa cvičí na patentovaných
+        trampolínach v sprievode dynamickej hudby a má mnoho benefitov: zvyšuje kapacitu pľúc pre dýchanie, pomáha
+        znižovať krvný tlak, pôsobí proti depresii, podporuje lymfatický obeh rovnako ako prietok krvi v žilách
+        obehového systému, znižuje hladinu cholesterolu, zmierňuje únavu a menštruačné problémy u žien, zlepšuje
+        koordináciu, stimuluje metabolizmus, čím sa znižuje pravdepodobnosť obezity.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Power Joga</h2>
+      </div>
+      <p class="desc">Silové a komerčné cvičenie jogy. Prepája rôzne typy jogy a východnú filozofiu so západným štýlom
+        dynamického cvičenia. Pri cvičení sa využívajú základné prvky jogy, pomáha posilniť, natiahnuť, tvarovať tvoje
+        telo a zároveň perfektne uvoľňuje tvoju myseľ. Power joga je preto skvelým prostriedkom na odbúravanie stresu a
+        napätia. Budeš tak v pohode a ešte k tomu budeš skvelo vyzerať. Zvýši sa i tvoja flexibilita a držanie tela.
+        Počas hodiny sa striedajú pózy, v ktorých sa zotrváva dlhší čas – vďaka tomu pracuješ i na svojej sile. Power
+        joga tiež pomáha k uvoľneniu svalstva po náročnom dni, presedenom napr. za počítačom. Naš inštruktor sa taktiež
+        sústredí na to, aby všetkých viedol k správnemu spôsobu dýchania, čo je pri tomto cvičení veľmi dôležité.
+        Hlavnou výhodou Power Jogy je to, že uvoľní, posilní a zaťaží súmerne svalstvo na celom tele. Je preto ideálna
+        na odstránenie v súčasnosti rozšíreného civilizačného nedostatku nerovnováhy svalov – disbalancie.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Funkčný tréning</h2>
+      </div>
+      <p class="desc">Cvičenie, v ktorom budeme využívať rôzne metódy, pomôcky a hmotnosť vlastného tela. Tento typ
+        tréningu je pre všetkých ľudí, ktorí chcú redukovať tuk, mať pekné a zároveň funkčné svalstvo, ktoré pomáha pri
+        športe a bežných životných situáciách, v ktorých ho potrebujete. Využijeme najefektívnejšiu metódu spaľovania
+        tukov, hmotnosť vlastného tela a cvičenia na stanovištiach s rôznymi pomôckami (TRX, fit lopty, BOSU, činky...)
+      </p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Tabata</h2>
+      </div>
+      <p class="desc">Druh vysoko intenzívneho intervalového tréningu trvajúceho 4 minúty. Japonský lekár Izumi Tabata
+        dokázal, že cvičenie pri maximálnej intenzite po krátku dobu je účinnejšie, ako cvičenie v nízkej intenzite po
+        dlhšiu dobu. Pozostáva z 20 sekúnd maximálnej aktivity a 10 sekúnd odpočinku opakujúcich sa za sebou 8-krát. Za
+        20-30 minút možno týmto spôsobom precvičiť a vyformovať celé telo. Zvýši rýchlosť metabolizmu a to tým, že sa
+        zvýši potréningová spotreba kyslíka po dobu cca 48 hodín od skončenia cvičenia. Čo znamená, že vaše telo bude
+        spaľovať tuky pri správnom stravovaní a aj dlho po tom, ako opustíte posilňovňu.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Step By Step</h2>
+      </div>
+      <p class="desc">Pre Váš dokonalý <b>ZADOK</b> máme jedno nesmierne jednoduché riešenie. Chodiť po schodoch. A aby
+        to bola väčšia zábava, tak Vám pustíme super hudbu a pridá sa k Vám aj skvelý inštruktor, ktorý to s Vami celé
+        odmaká tiež.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>BOSU</h2>
+      </div>
+      <p class="desc">Hodina je určená na komplexné spevnenie svalov celého tela (povrchových aj hlbokých),
+        má pozitívny vplyv na zdravé držanie tela, fyzickú kondíciu a redukciu tuku. BOSU je špeciálne
+        vyvinutá balančná pomôcka v tvare polgule.</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Body Styling, Super Body</h2>
+      </div>
+      <p class="desc">Predstavuje maximálne účinné spojenie klasického aerobiku s dôrazom na posilňovací tréning. Hodina
+        zameraná na posilnenie celého tela s využitím rôznych cvičebných pomôcok (činky, expandery-gumičky, tyče, stepy,
+        bosu) + posilňovanie na podložke</p>
+    </div>
+
+    <div class="training">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Med Ball</h2>
+      </div>
+      <p class="desc">Cvičenie, ktoré je zamerané na formovanie zadku a brucha. Intenzívne intervalové cvičenie pri
+        ktorom sa používa ako pomôcka medicinbal - lopta s váhou 2-3kg. Cvičí sa v intervaloch 35sek/10+sek. Ideálne na
+        formovanie a spaľovanie tukov. Vhodné pre ženy aj mužov.</p>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h1 class="title">Galéria</h1>
+  </section>
+
+  <footer>
+    <p>&copy; 2022 Mustang Gym | Stránku vytvoril <a href="https://dcopik.tk" target="_blank"
+        rel="noopener noreferrer">Damián Čopík</a></p>
+  </footer>
 
 </body>
 
