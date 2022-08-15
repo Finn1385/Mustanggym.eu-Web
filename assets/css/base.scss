@@ -45,6 +45,7 @@
 html {
   background-color: var(--blue);
   padding: 0 var(--content-padding);
+  scroll-behavior: smooth;
 }
 
 nav {
@@ -137,6 +138,24 @@ nav {
   }
 }
 
+h1.title {
+  color: var(--white);
+  font-family: "Bebas Neue";
+  font-size: 4rem;
+  margin-left: 30px;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 15px;
+    height: 4rem;
+    background-color: var(--red);
+    left: -30px;
+    top: 2.5px;
+    position: absolute;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   * {
     --content-padding: 100px;
@@ -155,7 +174,7 @@ nav {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 880px) {
   nav {
     ul.links {
       position: absolute;
