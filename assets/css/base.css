@@ -129,6 +129,78 @@ h1.title::before {
   position: absolute;
 }
 
+#cennik {
+  margin-top: 40px;
+}
+#cennik section.icon-title {
+  margin-bottom: 40px;
+}
+#cennik section.icon-title p {
+  max-width: 100%;
+}
+#cennik section.icon-title p span.price {
+  color: var(--red);
+  font-weight: bold;
+  float: right;
+}
+
+footer {
+  margin: 20px 0;
+}
+footer p {
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: lighter;
+  text-align: center;
+}
+footer p a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--white);
+  transition: 0.3s ease text-decoration-color;
+  text-decoration: underline;
+  -webkit-text-decoration-color: rgba(0, 0, 0, 0);
+          text-decoration-color: rgba(0, 0, 0, 0);
+}
+footer p a:hover {
+  -webkit-text-decoration-color: var(--white);
+          text-decoration-color: var(--white);
+}
+
+section.icon-title {
+  width: calc(100% - 80px);
+  margin: 20px 0 20px 80px;
+}
+section.icon-title .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+section.icon-title .title span.icon {
+  font-size: 4rem;
+  color: var(--red);
+}
+section.icon-title .title h2 {
+  font-size: 2.5rem;
+  color: var(--white);
+  margin-left: 20px;
+}
+section.icon-title p {
+  color: var(--white);
+  font-size: 1.75rem;
+  max-width: 75%;
+  margin-left: calc(3.5rem + 20px + 10px);
+  margin-bottom: 10px;
+}
+
+p.last-edit {
+  color: var(--white);
+  align-self: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
 @media only screen and (max-width: 1200px) {
   * {
     --content-padding: 100px;

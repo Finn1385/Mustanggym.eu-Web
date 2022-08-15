@@ -156,6 +156,80 @@ h1.title {
   }
 }
 
+#cennik {
+  margin-top: 40px;
+
+  section.icon-title {
+    margin-bottom: 40px;
+
+    p {
+      max-width: 100%;
+      span.price {
+        color: var(--red);
+        font-weight: bold;
+        float: right;
+      }
+    }
+  }
+}
+
+footer {
+  margin: 20px 0;
+  p {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: lighter;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--white);
+      transition: 0.3s ease text-decoration-color;
+      text-decoration: underline;
+      text-decoration-color: rgba($color: #000000, $alpha: 0);
+
+      &:hover {
+        text-decoration-color: var(--white);
+      }
+    }
+  }
+}
+
+section.icon-title {
+  width: calc(100% - 80px);
+  margin: 20px 0 20px 80px;
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    span.icon {
+      font-size: 4rem;
+      color: var(--red);
+    }
+    h2 {
+      font-size: 2.5rem;
+      color: var(--white);
+      margin-left: 20px;
+    }
+  }
+  p {
+    color: var(--white);
+    font-size: 1.75rem;
+    max-width: 75%;
+    margin-left: calc(3.5rem + 20px + 10px);
+    margin-bottom: 10px;
+  }
+}
+
+p.last-edit {
+  color: var(--white);
+  align-self: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
 @media only screen and (max-width: 1200px) {
   * {
     --content-padding: 100px;
