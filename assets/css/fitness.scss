@@ -1,0 +1,173 @@
+#fitness-centrum {
+  padding-top: 100px;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
+  .background {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/bg-fitness.jpg");
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 0;
+    top: 0;
+    margin-left: calc(0px - var(--content-padding));
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(
+        270deg,
+        rgba(22, 26, 29, 0.5) 0%,
+        rgba(22, 26, 29, 0.6) 15%,
+        rgba(22, 26, 29, 0.75) 25%,
+        rgba(22, 26, 29, 0.9) 70%,
+        rgba(22, 26, 29, 0.95) 100%
+      );
+    }
+  }
+
+  .separator {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100px;
+    bottom: 0px;
+    left: 0;
+    margin-left: calc(0px - var(--content-padding));
+
+    background: linear-gradient(
+      180deg,
+      rgba(22, 26, 29, 0.1) 0%,
+      rgba(22, 26, 29, 1) 88%
+    );
+  }
+}
+
+#otvaracie-hodiny {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  table {
+    align-self: center;
+    width: 80%;
+    border-collapse: collapse;
+
+    tr {
+      td {
+        width: 50%;
+        text-align: center;
+        font-size: 4rem;
+        color: var(--white);
+        font-weight: bold;
+
+        &:first-child,
+        &:last-child {
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: var(--red);
+            left: 0;
+            bottom: -2.5px;
+          }
+        }
+
+        &:first-child {
+          &::after {
+            right: 0;
+            left: auto;
+          }
+        }
+
+        &:first-child {
+          border-right: 5px solid var(--red);
+        }
+      }
+
+      &:last-child {
+        td {
+          &::after {
+            content: none;
+          }
+        }
+      }
+      &:nth-child(even) {
+        td {
+          &::after {
+            width: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#cennik {
+  margin-top: 40px;
+
+  section.icon-title {
+    margin-bottom: 40px;
+
+    p {
+      max-width: 100%;
+      span.price {
+        color: var(--red);
+        font-weight: bold;
+        float: right;
+      }
+    }
+  }
+}
+
+section.icon-title {
+  width: calc(100% - 80px);
+  margin: 20px 0 20px 80px;
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    span.icon {
+      font-size: 4rem;
+      color: var(--red);
+    }
+    h2 {
+      font-size: 2.5rem;
+      color: var(--white);
+      margin-left: 20px;
+    }
+  }
+  p {
+    color: var(--white);
+    font-size: 1.75rem;
+    max-width: 75%;
+    margin-left: calc(3.5rem + 20px + 10px);
+    margin-bottom: 10px;
+  }
+}
+
+p.last-edit {
+  color: var(--white);
+  align-self: center;
+  text-align: center;
+  margin-top: 10px;
+}

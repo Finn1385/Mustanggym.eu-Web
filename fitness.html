@@ -1,16 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mustang Gym | Fitness centrum</title>
-  <link rel="stylesheet" href="assets/css/base.min.css">
-  <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mustang Gym | Fitness centrum</title>
+<link rel="shortcut icon" href="assets/images/logo.svg" type="image/svg+xml ">
+<link rel="stylesheet" href="assets/css/base.min.css">
+<link rel="stylesheet" href="assets/css/fitness.min.css">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
+  <nav>
+    <input type="checkbox" id="menu-control">
+    <a href="/" class="logo"><img src="assets/images/logo.svg" alt="Mustang Gym Logo"></a>
+    <ul class="links">
+      <li><a href="/">Domov</a></li>
+      <li><a href="#fitness-centrum">Fitness centrum</a></li>
+      <li><a href="#otvaracie-hodiny">Otváracie hodiny</a></li>
+      <li><a href="#cennik">Cenník</a></li>
+      <li><a href="#galeria">Galéria</a></li>
+      <label for="menu-control" class="menu-close material-symbols-outlined">close</label>
+    </ul>
+    <label for="menu-control" class="menu-open material-symbols-outlined">menu</label>
+  </nav>
+
+  <section id="fitness-centrum">
+    <div class="background"></div>
+    <div class="separator"></div>
+    <h1 class="title">Fitness centrum</h1>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">open_with</span>
+        <h2>Rozlohou najväčšie fitness centrum v Snine</h2>
+      </div>
+      <p class="desc">Na rozlohe 600m<sup>2</sup> Vám ponúkame kardio zónu, fitness zónu, činkáreň, miestnosť na drepy,
+        funkčnú zónu
+        a omnoho viac</p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Množstvo tréningov pod vedením certifikovaného trénera</h2>
+      </div>
+      <p class="desc">Funkčné cvičenia, Power Jóga, World Jumping, Strong Body...</p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">credit_card</span>
+        <h2>Karta MultiSport</h2>
+      </div>
+      <p class="desc">U nás akceptujeme kartu MultiSport</p>
+    </section>
+  </section>
+
+  <section id="otvaracie-hodiny">
+    <h1 class="title">Otváracie hodiny</h1>
+    <table>
+      <tbody>
+
+        <tr>
+          <td>Po</td>
+          <td>8:00 - 20:30</td>
+        </tr>
+        <tr>
+          <td>Ut</td>
+          <td>8:00 - 20:30</td>
+        </tr>
+        <tr>
+          <td>St</td>
+          <td>8:00 - 20:30</td>
+        </tr>
+        <tr>
+          <td>Št</td>
+          <td>8:00 - 20:30</td>
+        </tr>
+        <tr>
+          <td>Pi</td>
+          <td>8:00 - 20:30</td>
+        </tr>
+        <tr>
+          <td>So</td>
+          <td>Zatvorené</td>
+        </tr>
+        <tr>
+          <td>Ne</td>
+          <td>9:00 - 20:30</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="last-edit">Posledná úprava otváracích hodín - <b>15.8.2022</b></p>
+  </section>
+
+  <section id="cennik">
+    <h1 class="title">Cenník</h1>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">confirmation_number</span>
+        <h2>Vstupy</h2>
+      </div>
+      <p>Do 18 rokov <span class="price">3,00€</span></p>
+      <p>Nad 18 rokov <span class="price">3,50€</span></p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">card_membership</span>
+        <h2>Permanentky</h2>
+      </div>
+      <p>Mesačná permanentka do 18 rokov <span class="price">30,00€</span></p>
+      <p>Mesačná permanentka nad 18 rokov <span class="price">35,00€</span></p>
+      <p>2-mesačná permanentka na 10 vstupov <span class="price">35,00€</span></p>
+    </section>
+    <p class="last-edit">Posledná úprava cenníka - <b>15.8.2022</b></p>
+  </section>
+
+  <section id="galeria">
+    <h1 class="title">Galéria</h1>
+  </section>
 
 </body>
 
