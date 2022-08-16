@@ -11,7 +11,7 @@
     position: absolute;
     z-index: -1;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-image: url("../images/bg-fitness.jpg");
     background-position: left;
     background-size: cover;
@@ -27,7 +27,7 @@
       left: 0;
       top: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100%;
       background: linear-gradient(
         270deg,
         rgba(22, 26, 29, 0.5) 0%,
@@ -42,11 +42,10 @@
   .separator {
     position: absolute;
     z-index: -1;
-    width: 100vw;
+    width: 100%;
     height: 100px;
     bottom: 0px;
     left: 0;
-    margin-left: calc(0px - var(--content-padding));
 
     background: linear-gradient(
       180deg,
@@ -114,6 +113,103 @@
         td {
           &::after {
             width: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 830px) {
+  #otvaracie-hodiny {
+    table {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  #otvaracie-hodiny {
+    table {
+      tr {
+        td {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #otvaracie-hodiny {
+    table {
+      tr {
+        td {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #cennik {
+    section.icon-title {
+      margin-left: 0px;
+      .title {
+        span.icon {
+          font-size: 2.25rem;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-left: calc(1.75rem + 20px + 10px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #fitness-centrum {
+    .background {
+      background-position: 25%;
+    }
+  }
+
+  #cennik {
+    section.icon-title {
+      p {
+        span.price {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  #otvaracie-hodiny {
+    table {
+      tr {
+        td {
+          font-size: 1.5rem;
+
+          &:first-child,
+          &:last-child {
+            &::after {
+              height: 2.5px;
+              bottom: -1.25px;
+            }
+          }
+
+          &:first-child {
+            border-right: 2.5px solid var(--red);
           }
         }
       }
