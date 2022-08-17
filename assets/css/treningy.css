@@ -33,15 +33,15 @@
 #rozvrh .separator {
   position: absolute;
   z-index: -1;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   bottom: 0px;
   left: 0;
-  margin-left: calc(0px - var(--content-padding));
   background: linear-gradient(180deg, rgba(22, 26, 29, 0.1) 0%, rgb(22, 26, 29) 88%);
 }
 #rozvrh .day {
   width: 100%;
+  margin: 10px 0;
 }
 #rozvrh .day .title {
   margin-left: 80px;
@@ -60,12 +60,18 @@
   margin-left: 20px;
 }
 #rozvrh .day .trainings {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 80px;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 #rozvrh .day .trainings .training {
+  min-width: calc(30% - 40px);
   text-align: center;
+  margin: 10px 20px;
 }
 #rozvrh .day .trainings .training p.time {
   font-size: 2rem;
@@ -77,6 +83,9 @@
   color: var(--white);
 }
 
+#treningy {
+  margin-top: 40px;
+}
 #treningy .training {
   margin: 40px 0;
 }
@@ -112,4 +121,100 @@
 }
 #treningy .training:nth-child(odd) p.desc {
   text-align: right;
+}
+
+@media only screen and (max-width: 900px) {
+  #rozvrh .day .title span.icon {
+    font-size: 2.5rem;
+  }
+  #rozvrh .day .title h2 {
+    font-size: 2rem;
+  }
+  #rozvrh .day .trainings .training p.time,
+#rozvrh .day .trainings .training p.type {
+    font-size: 1.75rem;
+  }
+}
+@media only screen and (max-width: 800px) {
+  #rozvrh .background {
+    background-size: cover;
+  }
+  #treningy .training .title {
+    margin-left: 0;
+  }
+  #treningy .training p.desc {
+    margin: 10px calc(3rem + 20px) 10px;
+  }
+}
+@media only screen and (max-width: 750px) {
+  #rozvrh .day .title {
+    margin-left: 40px;
+  }
+  #rozvrh .day .trainings {
+    margin-left: 0;
+    grid-template-rows: repeat(1, 1fr);
+  }
+  #rozvrh .day .trainings .training {
+    min-width: 33%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #cennik section.icon-title {
+    margin-left: 0px;
+  }
+  #cennik section.icon-title .title span.icon {
+    font-size: 2.25rem;
+  }
+  #cennik section.icon-title .title h2 {
+    font-size: 1.5rem;
+  }
+  #cennik section.icon-title p {
+    font-size: 1rem;
+    max-width: 100%;
+    margin-left: calc(1.75rem + 20px + 10px);
+  }
+  #treningy .training .title span.icon {
+    font-size: 2.5rem;
+  }
+  #treningy .training .title h2 {
+    font-size: 2rem;
+  }
+  #treningy .training p.desc {
+    font-size: 1.5rem;
+  }
+  #treningy .training:nth-child(odd) p.desc {
+    margin-left: 0;
+  }
+  #treningy .training:nth-child(even) p.desc {
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 450px) {
+  #rozvrh .background {
+    background-position: 25%;
+  }
+  #cennik section.icon-title p span.price {
+    margin-left: 20px;
+  }
+  #treningy .training .title span.icon {
+    font-size: 2.25rem;
+  }
+  #treningy .training .title h2 {
+    font-size: 1.75rem;
+  }
+  #treningy .training p.desc {
+    margin: 10px 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #rozvrh .day .title {
+    margin-left: 10px;
+  }
+  #rozvrh .day .title span.icon {
+    font-size: 2rem;
+  }
+  #rozvrh .day .title h2 {
+    font-size: 1.75rem;
+    margin-left: 10px;
+  }
 }
