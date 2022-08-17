@@ -8,8 +8,8 @@ const nextImage = () => {
   const photoWidth = photos.children[0].getBoundingClientRect().width;
   const firstPhoto = photos.children[0];
   const currentShift =
-    Number.parseInt(
-      firstPhoto.parentElement.style.transform.replace(/\D/g, "")
+    Number.parseFloat(
+      firstPhoto.parentElement.style.transform.replace(/[^0-9.]/g, "")
     ) || 0;
   let nextShift = currentShift + photoWidth;
   if (nextShift > photoWidth * (photosAmount - 1)) {
@@ -31,7 +31,7 @@ const prevImage = () => {
   const firstPhoto = photos.children[0];
   const currentShift =
     Number.parseInt(
-      firstPhoto.parentElement.style.transform.replace(/\D/g, "")
+      firstPhoto.parentElement.style.transform.replace(/[^0-9.]/g, "")
     ) || 0;
   let nextShift = currentShift - photoWidth;
   if (nextShift < 0) {
@@ -47,5 +47,19 @@ const startInterval = () => {
     nextImage();
   }, 3000);
 };
+
+document
+  .getElementById("galeria")
+  .getElementsByClassName("gallery")[0]
+  .addEventListener("mouseover", () => {
+    clearInterval(photoInterval);
+  });
+
+document
+  .getElementById("galeria")
+  .getElementsByClassName("gallery")[0]
+  .addEventListener("mouseleave", () => {
+    photoInterval = startInterval();
+  });
 
 let photoInterval = startInterval();
