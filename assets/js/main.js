@@ -4,7 +4,7 @@ const closeNav = () => {
 
 window.addEventListener("load", () => {
   document.getElementsByClassName("loading")[0].remove();
-  loadImages();
+  if (document.getElementById("galeria")) loadImages();
 });
 
 const loadImages = () => {
