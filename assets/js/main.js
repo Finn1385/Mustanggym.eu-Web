@@ -4,13 +4,11 @@ const closeNav = () => {
 
 window.addEventListener("load", () => {
   document.getElementsByClassName("loading")[0].remove();
-  if (document.getElementById("galeria")) loadImages();
+  loadImages();
 });
 
 const loadImages = () => {
-  const images = document
-    .getElementById("galeria")
-    .getElementsByClassName("photos")[0].children;
+  const images = document.querySelectorAll("img[_src]");
   for (const img of images) {
     img.src = img.attributes._src.value;
   }
