@@ -1,16 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mustang Gym | Redukčný kurz</title>
-  <link rel="stylesheet" href="assets/css/base.min.css">
   <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/base.min.css">
+  <link rel="stylesheet" href="assets/css/redukcia.min.css">
+  <link rel="stylesheet" href="assets/css/gallery.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/gallery.js"></script>
+  <noscript>
+    <style>
+      .loading {
+        display: none;
+      }
+    </style>
+  </noscript>
 </head>
 
 <body>
+  <nav>
+    <input type="checkbox" id="menu-control">
+    <a href="/" class="logo"><img src="assets/images/logo.svg" alt="Mustang Gym Logo"></a>
+    <ul class="links">
+      <li><a href="/">Domov</a></li>
+      <li><a href="#redukcny-kurz" onclick="closeNav();">Redukčný kurz</a></li>
+      <li><a href="#nasi-klienti" onclick="closeNav();">Naši klienti</a></li>
+      <li><a href="#kontaktujte-nas" onclick="closeNav();">Kontaktujte nás</a></li>
+      <label for="menu-control" class="menu-close material-symbols-outlined">close</label>
+    </ul>
+    <label for="menu-control" class="menu-open material-symbols-outlined">menu</label>
+  </nav>
+
+  <div class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <section id="redukcny-kurz">
+    <div class="background">
+      <div class="separator"></div>
+    </div>
+    <h1 class="title">Redukčný kurz</h1>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">question_mark</span>
+        <h2>Bojujete s nadváhou alebo sa vám nedarí schudnúť?</h2>
+      </div>
+      <p class="desc">Ste na správnom mieste! Zapojte sa do nášho kurzu a zistíte, že s nami sa to dá!</p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">restaurant_menu</span>
+        <h2>Jedálniček na mieru</h2>
+      </div>
+      <p class="desc">Ukážeme Vám ako sa dá zdravo stravovať a vypracujeme vám stravovací program prispôsobený pre Vás
+      </p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">monitor_weight</span>
+        <h2>Monitorovanie výsledkov</h2>
+      </div>
+      <p class="desc">Budeme monitorovať vaše výsledky a celkovo vyhodnotíme výsledky mesačného cyklu</p>
+    </section>
+    <section class="icon-title">
+      <div class="title">
+        <span class="material-symbols-outlined icon">fitness_center</span>
+        <h2>Tréningy vyhradené pre redukčný kurz</h2>
+      </div>
+      <p class="desc">Vyhradíme čas na tréningy výlučne pre redukčný kurz. Budete cvičiť v rovnakom kolektíve s rovnakým
+        cieľom</p>
+    </section>
+  </section>
+
+  <section id="nasi-klienti">
+    <h1 class="title">Naši klienti</h1>
+    <div id="galeria">
+
+      <div class="gallery">
+        <div class="controls">
+          <span class="material-symbols-outlined" onclick="prevClient()">chevron_left</span>
+          <span class="material-symbols-outlined" onclick="nextClient()">chevron_right</span>
+        </div>
+        <div class="photos-wrapper">
+          <div class="photos">
+            <img _src="assets/images/redukcia/lucia.jpg" alt="Lucia premena">
+            <img _src="assets/images/redukcia/marta.jpg" alt="Marta premena">
+          </div>
+        </div>
+        <div class="user-wrapper">
+          <div class="profile-pic">
+            <div class="pp-photos">
+              <img _src="assets/images/redukcia/lucia-pp.jpg" alt="Lucia">
+              <img _src="assets/images/redukcia/marta-pp.jpg" alt="Marta">
+            </div>
+          </div>
+          <div class="message">
+            <div class="messages">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, architecto fuga repudiandae
+                quae
+                quibusdam ea vel aut libero laudantium, ex saepe nisi doloribus, incidunt magni.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quis tenetur sunt ex, maxime autem?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontaktujte-nas">
+    <h1 class="title">Kontaktujte nás</h1>
+
+    <div class="links">
+      <a href="mailto:korzo.sv@gmail.com">
+        <span class="material-symbols-outlined icon">mail</span>
+        <p>korzo.sv@gmail.com</p>
+      </a>
+      <a href="tel:+421905446393">
+        <span class="material-symbols-outlined icon">phone</span>
+        <p>+421 905 446 393</p>
+      </a>
+      <a href="https://www.facebook.com/mustanggymsnina" target="_blank">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+          <path
+            d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
+        </svg>
+        <p>Mustang Gym</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2022 Mustang Gym | Stránku vytvoril <a href="https://dcopik.tk" target="_blank"
+        rel="noopener noreferrer">Damián Čopík</a></p>
+  </footer>
 
 </body>
 
