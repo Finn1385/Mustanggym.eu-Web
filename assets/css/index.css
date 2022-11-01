@@ -193,7 +193,7 @@ footer.home a.address:hover {
     margin-bottom: 10px;
   }
   .content .logo img.logo {
-    width: 250px;
+    width: 350px;
   }
   .content ul.links {
     width: 100%;
@@ -212,13 +212,22 @@ footer.home a.address:hover {
   }
 }
 @media only screen and (max-width: 375px) {
+  .content .logo img.logo {
+    width: 250px;
+  }
+  .content ul.links li {
+    padding: 10px 0;
+  }
   .content ul.links li a {
     font-size: 1.75rem;
   }
-  footer p {
+  footer.home {
+    margin-bottom: 10px;
+  }
+  footer.home p {
     font-size: 0.8rem;
   }
-  footer a.address {
+  footer.home a.address {
     font-size: 0.9rem;
     margin-bottom: 10px;
   }

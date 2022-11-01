@@ -241,7 +241,7 @@ footer.home {
       margin-bottom: 10px;
 
       img.logo {
-        width: 250px;
+        width: 350px;
       }
     }
 
@@ -269,15 +269,23 @@ footer.home {
 
 @media only screen and (max-width: 375px) {
   .content {
+    .logo {
+      img.logo {
+        width: 250px;
+      }
+    }
+
     ul.links {
       li {
+        padding: 10px 0;
         a {
           font-size: 1.75rem;
         }
       }
     }
   }
-  footer {
+  footer.home {
+    margin-bottom: 10px;
     p {
       font-size: 0.8rem;
     }
