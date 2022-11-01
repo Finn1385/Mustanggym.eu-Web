@@ -1,0 +1,479 @@
+.content {
+  padding-top: 100px;
+
+  section.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    --carbs-color: #a4161a;
+    --protein-color: #df5144;
+    --fat-color: #ff7866;
+
+    h1.title {
+      align-self: flex-start;
+      margin-bottom: 25px;
+    }
+
+    .chart-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .chart {
+        position: relative;
+        width: 250px;
+        height: 250px;
+
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--fat-color) 0% var(--data-fat),
+          var(--protein-color) var(--data-fat)
+            calc(var(--data-fat) + var(--data-protein)),
+          var(--carbs-color) calc(var(--data-fat) + var(--data-protein))
+            calc(var(--data-fat) + var(--data-protein) + var(--data-carbs))
+        );
+
+        &::after {
+          content: "";
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          position: absolute;
+          background: var(--blue);
+        }
+      }
+
+      p#total-calories {
+        font-family: "Bebas Neue";
+        font-size: 2rem;
+        color: var(--white);
+        position: absolute;
+        text-align: center;
+        span.amount {
+          font-size: 3rem;
+          font-family: "Bebas Neue";
+        }
+      }
+    }
+
+    .nutrients {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+      flex-wrap: wrap;
+      margin: 15px 0 25px;
+
+      .nutrient {
+        text-align: center;
+        color: var(--white);
+        margin: 10px 25px;
+        min-width: calc(30% - 50px);
+        p {
+          font-family: "Bebas Neue";
+          font-size: 2rem;
+
+          &.data {
+            font-family: "Akrobat";
+            font-weight: bold;
+
+            span.amount {
+              font-family: "Bebas Neue";
+              font-size: 2.5rem;
+            }
+          }
+
+          &.desc {
+            position: relative;
+            &::after {
+              position: absolute;
+              content: "";
+              width: 100px;
+              height: 2.5px;
+              bottom: -1.75px;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+
+            &.carbs::after {
+              background: var(--carbs-color);
+            }
+            &.protein::after {
+              background: var(--protein-color);
+            }
+            &.fat::after {
+              background: var(--fat-color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  section.list {
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      a.add-food {
+        text-decoration: none;
+        font-size: 2rem;
+        color: var(--white);
+        transition: 0.3s ease color;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--red);
+        }
+
+        span {
+          margin-left: 10px;
+          font-size: 3rem;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .food-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .item {
+        margin-top: 25px;
+        // margin: 15px 0;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        border: 5px solid var(--red);
+        border-radius: 15px;
+        position: relative;
+
+        span.delete {
+          position: absolute;
+          font-size: 2rem;
+          color: var(--white);
+          cursor: pointer;
+          transition: 0.3s ease color;
+          top: 5px;
+          right: 5px;
+
+          &:hover {
+            color: var(--red);
+          }
+        }
+
+        .image {
+          width: 25%;
+          height: 100%;
+          position: relative;
+
+          &::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: var(--blue);
+            background: linear-gradient(
+              270deg,
+              rgba(22, 26, 29, 1) 0%,
+              rgba(22, 26, 29, 0.9) 15%,
+              rgba(22, 26, 29, 0) 100%
+            );
+            top: 0;
+            left: 0;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          color: var(--white);
+          flex: 1;
+          padding: 25px 0;
+          margin: 0 25px;
+          height: 100%;
+
+          h2.title {
+            font-family: "Bebas Neue";
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+          }
+
+          .nutrients {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            .nutrient {
+              text-align: center;
+              margin-right: 25px;
+              min-width: 25%;
+
+              p.desc {
+                font-weight: lighter;
+                font-size: 1.5rem;
+              }
+
+              p.data {
+                font-size: 1.75rem;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .weight {
+          margin-right: 25px;
+          color: var(--white);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+
+          p.title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+          }
+
+          p.input {
+            font-weight: bold;
+            border-bottom: 3px solid var(--red);
+            text-align: center;
+            font-size: 1.5rem;
+
+            input {
+              font-weight: bold;
+              width: 3rem;
+              -moz-appearance: textfield;
+              font-size: 2rem;
+              text-align: right;
+              background: none;
+              outline: none;
+              border: none;
+              color: var(--white);
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  section.search {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #161a1d, $alpha: 0.75);
+    padding: 100px var(--content-padding) 25px;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    justify-content: center;
+    align-items: flex-start;
+    transition: 0.3s ease opacity;
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      height: calc(100% - 25px);
+      background-color: var(--blue);
+      border: 4px solid var(--red);
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 25px var(--content-padding);
+
+      h1 {
+        font-family: "Bebas Neue";
+        font-size: 3rem;
+        color: var(--white);
+        padding-bottom: 25px;
+      }
+
+      span.close {
+        position: absolute;
+        font-size: 2rem;
+        color: var(--white);
+        cursor: pointer;
+        transition: 0.3s ease color;
+        top: 5px;
+        right: 5px;
+
+        &:hover {
+          color: var(--red);
+        }
+      }
+
+      input {
+        background: none;
+        outline: none;
+        border: 2px solid var(--red);
+        font-size: 2.5rem;
+        color: var(--white);
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .results {
+        margin-top: 20px;
+        width: 100%;
+        flex: 1;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        .not-found {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.hidden {
+            display: none;
+          }
+          p {
+            color: var(--white);
+            font-size: 3rem;
+            text-align: center;
+          }
+        }
+
+        .item {
+          cursor: pointer;
+          width: 100%;
+          height: 125px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          border: 2px solid var(--red);
+          border-radius: 5px;
+          transition: 0.3s ease background;
+          margin: 5px 0;
+
+          &:hover {
+            // rgb(22, 26, 29)
+            background-color: rgb(24, 28, 31);
+
+            .image {
+              &::before {
+                opacity: 1;
+              }
+            }
+          }
+
+          .image {
+            width: 25%;
+            height: 100%;
+            position: relative;
+
+            &::after {
+              content: "";
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              background: var(--blue);
+              background: linear-gradient(
+                270deg,
+                rgba(22, 26, 29, 1) 0%,
+                rgba(22, 26, 29, 0.9) 15%,
+                rgba(22, 26, 29, 0) 100%
+              );
+              top: 0;
+              left: 0;
+            }
+
+            &::before {
+              content: "";
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              background: var(--blue);
+              background: linear-gradient(
+                270deg,
+                rgba(24, 28, 31, 1) 0%,
+                rgba(24, 28, 31, 0.9) 15%,
+                rgba(24, 28, 31, 0) 100%
+              );
+              top: 0;
+              left: 0;
+              transition: 0.3s ease opacity;
+              opacity: 0;
+              z-index: 1;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+              border-top-left-radius: 3px;
+              border-bottom-left-radius: 3px;
+            }
+          }
+
+          h2.title {
+            font-size: 2rem;
+            color: var(--white);
+            margin-left: 25px;
+            font-family: "Bebas Neue";
+            flex: 1;
+          }
+
+          p {
+            margin-right: 25px;
+            font-size: 1.5rem;
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}

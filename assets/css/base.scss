@@ -155,7 +155,7 @@ nav {
       margin-left: 40px;
       text-decoration: none;
       font-family: "Bebas Neue";
-      font-size: 1.75rem;
+      font-size: 1.65rem;
       color: var(--white);
       transition: 0.3s ease color;
 
@@ -320,7 +320,7 @@ p.last-edit {
   }
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 990px) {
   nav {
     ul.links {
       position: absolute;

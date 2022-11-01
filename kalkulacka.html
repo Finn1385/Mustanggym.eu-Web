@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mustang Gym | Kalkulačka kalórií</title>
+  <link rel="shortcut icon" href="assets/images/logo.svg" type="image/svg+xml ">
+  <link rel="stylesheet" href="assets/css/base.min.css">
+  <link rel="stylesheet" href="assets/css/kalkulacka.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script defer src="assets/js/papaparse.min.js"></script>
+  <script defer src="assets/js/urlify.js"></script>
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="assets/js/kalkulacka.js"></script>
+
+  <noscript>
+    <style>
+      .loading {
+        display: none;
+      }
+    </style>
+  </noscript>
+</head>
+
+<body>
+  <nav>
+    <input type="checkbox" id="menu-control">
+    <a href="/" class="logo"><img src="assets/images/logo.svg" alt="Mustang Gym Logo"></a>
+    <ul class="links">
+      <li><a href="/">Domov</a></li>
+      <li><a href="#" onclick="closeNav(); toggleSearch();">Pridať potraviny</a></li>
+      <label for="menu-control" class="menu-close material-symbols-outlined">close</label>
+    </ul>
+    <label for="menu-control" class="menu-open material-symbols-outlined">menu</label>
+  </nav>
+
+  <div class="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+
+  <div class="content">
+    <section class="total" id="total">
+      <h1 class="title">Celkové hodnoty</h1>
+      <div class="chart-wrapper">
+        <div class="chart" style="--data-carbs: 0%; --data-protein: 0%; --data-fat: 0%"></div>
+        <p id="total-calories"><span class="amount">0</span><br>kcal</p>
+      </div>
+      <div class="nutrients">
+        <div class="nutrient" id="total-carbs">
+          <p class="desc carbs">Sacharidy</p>
+          <p class="data"><span class="amount">0</span> g</p>
+        </div>
+        <div class="nutrient" id="total-protein">
+          <p class="desc protein">Bielkoviny</p>
+          <p class="data"><span class="amount">0</span> g</p>
+        </div>
+        <div class="nutrient" id="total-fat">
+          <p class="desc fat">Tuky</p>
+          <p class="data"><span class="amount">0</span> g</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="list">
+      <header>
+        <h1 class="title">Zoznam potravín</h1>
+        <a onclick="toggleSearch();" class="add-food">Pridať potraviny <span
+            class="material-symbols-outlined">playlist_add</span></a>
+      </header>
+      <div class="food-list">
+      </div>
+    </section>
+
+    <section class="search">
+      <div class="wrapper">
+        <span class="material-symbols-outlined close" onclick="toggleSearch();">close</span>
+        <h1>Pridávanie potravín</h1>
+        <input type="text" placeholder="Vyhľadajte potraviny..." oninput="searchFood(this.value);">
+        <div class="results" id="search-results">
+          <div class="not-found hidden">
+            <p>Nenašli sa žiadne potraviny</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2022 Mustang Gym | Stránku vytvoril <a href="https://dcopik.tk" target="_blank"
+        rel="noopener noreferrer">Damián Čopík</a></p>
+  </footer>
+</body>
+
+</html>
