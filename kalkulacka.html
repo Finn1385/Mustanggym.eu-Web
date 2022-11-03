@@ -59,6 +59,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: .3s ease opacity;
         }
 
         #mainDialog {
@@ -161,6 +162,8 @@
             left: 0;
             width: 100%;
             height: 100%;
+            opacity: 0;
+            transition: .3s ease opacity;
         }
 
         .error {
@@ -325,7 +328,12 @@
                     trycatcherror.style.display = "none";
                     successEl.style.display = "inline";
                     setTimeout(function () {
-                        dialogWrap.style.display = "none";
+                        dialogWrap.style.opacity = "0";
+                        dialogWrap.style.pointerEvents = "none";
+                        setTimeout(function () {
+                            dialogWrap.style.display = "none";
+                            contentFrame.style.opacity = "1";
+                        }, 300);
                     }, 1000);
                 } catch (e) {
                     invalidPassEl.style.display = "inline";
