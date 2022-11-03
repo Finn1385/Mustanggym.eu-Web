@@ -1,102 +1,355 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
+<!--
+    Password protection was done by
+    https://www.maxlaumeister.com/pagecrypt/
+-->
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mustang Gym | Kalkulačka kalórií</title>
-  <link rel="shortcut icon" href="assets/images/logo.svg" type="image/svg+xml ">
-  <link rel="stylesheet" href="assets/css/base.min.css">
-  <link rel="stylesheet" href="assets/css/kalkulacka.min.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <script defer src="assets/js/papaparse.min.js"></script>
-  <script defer src="assets/js/urlify.js"></script>
-  <script defer src="assets/js/main.js"></script>
-  <script defer src="assets/js/kalkulacka.js"></script>
-
-  <noscript>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Mustang Gym | Kalkulačka kalórií</title>
+    <link rel="shortcut icon" href="assets/images/logo.svg" type="image/svg+xml ">
     <style>
-      .loading {
-        display: none;
-      }
+        @font-face {
+            font-family: "Bebas Neue";
+            src: url("assets/fonts/BebasNeue-Regular.ttf") format("truetype"),
+                url("assets/fonts/BebasNeue-Regular.woff") format("woff"),
+                url("assets/fonts/BebasNeue-Regular.woff2") format("woff2");
+            font-weight: normal;
+            font-size: normal;
+        }
+
+        @font-face {
+            font-family: "Akrobat";
+            src: url("assets/fonts/Akrobat-Regular.otf") format("opentype"),
+                url("assets/fonts/Akrobat-Regular.woff") format("woff"),
+                url("assets/fonts/Akrobat-Regular.woff2") format("woff2");
+            font-weight: normal;
+            font-size: normal;
+        }
+
+        * {
+            --red: #a4161a;
+            --white: #f5f3f4;
+            --blue: #161a1d;
+            --success: #ff7866;
+            font-family: "Akrobat";
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--blue);
+        }
+
+        #dialogWrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #mainDialog {
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #mainDialog .logo {
+            width: 350px;
+            /* height: 350px; */
+            max-width: 100%;
+            max-height: 100%;
+            position: relative;
+        }
+
+        #mainDialog .logo img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #mainDialog .logo::before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            width: 150px;
+            height: 150px;
+            background: var(--white);
+            filter: blur(50px);
+            opacity: 0.75;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.3s ease opacity;
+        }
+
+        #mainDialog h1 {
+            font-size: 3rem;
+            color: var(--white);
+            font-family: "Bebas Neue";
+            margin: 25px 0;
+        }
+
+        #passArea input {
+            background: none;
+            outline: none;
+            border: 2px solid var(--red);
+            font-size: 2.5rem;
+            color: var(--white);
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .alerts {
+            height: 1rem;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        #submitPass {
+            font-size: 2rem;
+            color: white;
+            border: 2px solid var(--red);
+            margin-top: 1rem;
+            padding: 5px 15px;
+            background: none;
+            outline: none;
+            border-radius: 5px;
+            transition: .3s ease background;
+            cursor: pointer;
+        }
+
+        #submitPass:hover {
+            background: var(--red);
+
+        }
+
+        .notifyText {
+            display: none;
+        }
+
+        #invalidPass {
+            color: var(--red);
+        }
+
+        #success {
+            color: var(--success);
+        }
+
+        #contentFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .error {
+            display: none;
+            color: red;
+        }
     </style>
-  </noscript>
 </head>
 
 <body>
-  <nav>
-    <input type="checkbox" id="menu-control">
-    <a href="/" class="logo"><img src="assets/images/logo.svg" alt="Mustang Gym Logo"></a>
-    <ul class="links">
-      <li><a href="/">Domov</a></li>
-      <li><a href="#" onclick="closeNav(); toggleSearch();">Pridať potraviny</a></li>
-      <label for="menu-control" class="menu-close material-symbols-outlined">close</label>
-    </ul>
-    <label for="menu-control" class="menu-open material-symbols-outlined">menu</label>
-  </nav>
-
-  <div class="loading">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-
-  <div class="content">
-    <section class="total" id="total">
-      <h1 class="title">Celkové hodnoty</h1>
-      <div class="chart-wrapper">
-        <div class="chart" style="--data-carbs: 0%; --data-protein: 0%; --data-fat: 0%"></div>
-        <p id="total-calories"><span class="amount">0</span><br>kcal</p>
-      </div>
-      <div class="nutrients">
-        <div class="nutrient" id="total-carbs">
-          <p class="desc carbs">Sacharidy</p>
-          <p class="data"><span class="amount">0</span> g</p>
+    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
+    <div id="dialogWrap">
+        <div id="mainDialog">
+            <div class="logo">
+                <img src="assets/images/logo.svg" alt="Mustang Gym Logo" class="logo">
+            </div>
+            <h1>Prihlásenie</h1>
+            <div id="passArea">
+                <input id="pass" type="password" name="pass" placeholder="Zadajte heslo" autofocus>
+                <div class="alerts">
+                    <div class="messages">
+                        <span id="invalidPass" class="error">Zadali ste nesprávne heslo, skúste to znovu</span>
+                        <span id="trycatcherror" class="error">Niečo sa pokazilo</span>
+                        <span id="success" class="notifyText">Úspešne prihlásený!</span>
+                    </div>
+                </div>
+            </div>
+            <button id="submitPass" type="button">Potvrdiť</button>
+            <div id="securecontext" class="error">
+                <p>
+                    Ospravedlňujeme sa za túto nepríjemonsť ale táto stránka môže byť načítaná len cez zabezpečený HTTPS
+                    link.
+                </p>
+            </div>
+            <div id="nocrypto" class="error">
+                <p>
+                    Váš prehliadač vyzerá byť zastaralý. Prosím navštívte túto stránku na modernom prehliadači
+                </p>
+            </div>
         </div>
-        <div class="nutrient" id="total-protein">
-          <p class="desc protein">Bielkoviny</p>
-          <p class="data"><span class="amount">0</span> g</p>
-        </div>
-        <div class="nutrient" id="total-fat">
-          <p class="desc fat">Tuky</p>
-          <p class="data"><span class="amount">0</span> g</p>
-        </div>
-      </div>
-    </section>
+    </div>
+    <script>
+        (function () {
 
-    <section class="list">
-      <header>
-        <h1 class="title">Zoznam potravín</h1>
-        <a onclick="toggleSearch();" class="add-food">Pridať potraviny <span
-            class="material-symbols-outlined">playlist_add</span></a>
-      </header>
-      <div class="food-list">
-      </div>
-    </section>
+            var pl = "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";
 
-    <section class="search">
-      <div class="wrapper">
-        <span class="material-symbols-outlined close" onclick="toggleSearch();">close</span>
-        <h1>Pridávanie potravín</h1>
-        <input type="text" placeholder="Vyhľadajte potraviny..." oninput="searchFood(this.value);">
-        <div class="results" id="search-results">
-          <div class="not-found hidden">
-            <p>Nenašli sa žiadne potraviny</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+            var submitPass = document.getElementById('submitPass');
+            var passEl = document.getElementById('pass');
+            var invalidPassEl = document.getElementById('invalidPass');
+            var trycatcherror = document.getElementById('trycatcherror');
+            var successEl = document.getElementById('success');
+            var contentFrame = document.getElementById('contentFrame');
 
-  <footer>
-    <p>&copy; 2022 Mustang Gym | Stránku vytvoril <a href="https://dcopik.tk" target="_blank"
-        rel="noopener noreferrer">Damián Čopík</a></p>
-  </footer>
+            // Sanity checks
+
+            if (pl === "") {
+                submitPass.disabled = true;
+                passEl.disabled = true;
+                alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
+                return;
+            }
+
+            if (!isSecureContext) {
+                document.querySelector("#passArea").style.display = "none";
+                document.querySelector("#securecontext").style.display = "block";
+                return;
+            }
+
+            if (!crypto.subtle) {
+                document.querySelector("#passArea").style.display = "none";
+                document.querySelector("#nocrypto").style.display = "block";
+                return;
+            }
+
+            function str2ab(str) {
+                var ustr = atob(str);
+                var buf = new ArrayBuffer(ustr.length);
+                var bufView = new Uint8Array(buf);
+                for (var i = 0, strLen = ustr.length; i < strLen; i++) {
+                    bufView[i] = ustr.charCodeAt(i);
+                }
+                return bufView;
+            }
+
+            async function deriveKey(salt, password) {
+                const encoder = new TextEncoder()
+                const baseKey = await crypto.subtle.importKey(
+                    'raw',
+                    encoder.encode(password),
+                    'PBKDF2',
+                    false,
+                    ['deriveKey'],
+                )
+                return await crypto.subtle.deriveKey(
+                    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+                    baseKey,
+                    { name: 'AES-GCM', length: 256 },
+                    true,
+                    ['decrypt'],
+                )
+            }
+
+            async function doSubmit(evt) {
+                submitPass.disabled = true;
+                passEl.disabled = true;
+
+                let iv, ciphertext, key;
+
+                try {
+                    var unencodedPl = str2ab(pl);
+
+                    const salt = unencodedPl.slice(0, 32)
+                    iv = unencodedPl.slice(32, 32 + 16)
+                    ciphertext = unencodedPl.slice(32 + 16)
+
+                    key = await deriveKey(salt, passEl.value);
+                } catch (e) {
+                    trycatcherror.style.display = "inline";
+                    console.error(e);
+                    return;
+                }
+
+                try {
+                    const decryptedArray = new Uint8Array(
+                        await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext)
+                    );
+
+                    let decrypted = new TextDecoder().decode(decryptedArray);
+
+                    if (decrypted === "") throw "No data returned";
+
+                    const basestr = '<base href="." target="_top">';
+                    const anchorfixstr = `
+                    <script>
+                        Array.from(document.links).forEach((anchor) => {
+                            const href = anchor.getAttribute("href");
+                            if (href.startsWith("#")) {
+                                anchor.addEventListener("click", function(e) {
+                                    e.preventDefault();
+                                    const targetId = this.getAttribute("href").substring(1);
+                                    const targetEl = document.getElementById(targetId);
+                                    targetEl.scrollIntoView();
+                                });
+                            }
+                        });
+                    <\/script>
+                `;
+
+                    // Set default iframe link targets to _top so all links break out of the iframe
+                    if (decrypted.includes("<head>")) decrypted = decrypted.replace("<head>", "<head>" + basestr);
+                    else if (decrypted.includes("<!DOCTYPE html>")) decrypted = decrypted.replace("<!DOCTYPE html>", "<!DOCTYPE html>" + basestr);
+                    else decrypted = basestr + decrypted;
+
+                    // Fix fragment links
+                    if (decrypted.includes("</body>")) decrypted = decrypted.replace("</body>", anchorfixstr + '</body>');
+                    else if (decrypted.includes("</html>")) decrypted = decrypted.replace("</html>", anchorfixstr + '</html>');
+                    else decrypted = decrypted + anchorfixstr;
+
+                    contentFrame.srcdoc = decrypted;
+
+                    invalidPassEl.style.display = "none";
+                    trycatcherror.style.display = "none";
+                    successEl.style.display = "inline";
+                    setTimeout(function () {
+                        dialogWrap.style.display = "none";
+                    }, 1000);
+                } catch (e) {
+                    invalidPassEl.style.display = "inline";
+                    passEl.value = "";
+                    submitPass.disabled = false;
+                    passEl.disabled = false;
+                    console.error(e);
+                    return;
+                }
+            }
+
+            submitPass.onclick = doSubmit;
+            passEl.onkeypress = function (e) {
+                if (!e) e = window.event;
+                var keyCode = e.keyCode || e.which;
+                invalidPassEl.style.display = "none";
+                if (keyCode == '13') {
+                    // Enter pressed
+                    doSubmit();
+                    return false;
+                }
+            }
+        })();
+    </script>
 </body>
 
 </html>
