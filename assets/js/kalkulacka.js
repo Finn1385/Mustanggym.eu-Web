@@ -38,6 +38,16 @@ const listTemplate = (itemIndex) => {
     <div class="info">
       <h2 class="title">${FOOD_LIST[itemIndex][2]}</h2>
       <div class="nutrients">
+        <div class="nutrient mobile">
+          <p class="desc">S/B/T</p>
+          <p class="data"><span class="amount">${parseFloat(
+            FOOD_LIST[itemIndex][3]
+          )}</span>/<span class="amount">${parseFloat(
+    FOOD_LIST[itemIndex][4]
+  )}</span>/<span class="amount">${parseFloat(
+    FOOD_LIST[itemIndex][5]
+  )}</span> g</p>
+        </div>
         <div class="nutrient">
           <p class="desc">Sacharidy</p>
           <p class="data"><span class="amount">${parseFloat(
@@ -98,9 +108,21 @@ const updateItem = (itemIndex, weight, parent) => {
   const fatPerG = parseFloat(FOOD_LIST[itemIndex][5]) / 100;
   const caloriesPerG = parseFloat(FOOD_LIST[itemIndex][6]) / 100;
 
+  // prettier-ignore
   parent.getElementsByClassName("info")[0].innerHTML = `
   <h2 class="title">${FOOD_LIST[itemIndex][2]}</h2>
   <div class="nutrients">
+    <div class="nutrient mobile">
+      <p class="desc">S/B/T</p>
+      <p class="data">
+        <span class="amount">${
+          Math.round(carbsPerG * weight * 100) / 100
+        }</span>/<span class="amount">${
+          Math.round(proteinPerG * weight * 100) / 100
+        }</span>/<span class="amount">${
+          Math.round(fatPerG * weight * 100) / 100
+        }</span> g</p>
+    </div>
     <div class="nutrient">
       <p class="desc">Sacharidy</p>
       <p class="data"><span class="amount">${

@@ -64,7 +64,7 @@
 
     .nutrients {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       flex-direction: row;
       width: 100%;
@@ -74,8 +74,13 @@
       .nutrient {
         text-align: center;
         color: var(--white);
-        margin: 10px 25px;
-        min-width: calc(30% - 50px);
+        margin: 10px 10px;
+        min-width: calc(30%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
         p {
           font-family: "Bebas Neue";
           font-size: 2rem;
@@ -217,8 +222,9 @@
           justify-content: center;
           color: var(--white);
           flex: 1;
-          padding: 25px 0;
-          margin: 0 25px;
+          // padding: 25px 0;
+          padding: 25px;
+          // margin: 0 25px;
           height: 100%;
 
           h2.title {
@@ -232,11 +238,13 @@
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
+            padding: 0 5px;
+            width: 100%;
 
             .nutrient {
               text-align: center;
               margin-right: 25px;
-              min-width: 25%;
+              // max-width: 25%;
 
               p.desc {
                 font-weight: lighter;
@@ -246,6 +254,10 @@
               p.data {
                 font-size: 1.75rem;
                 font-weight: bold;
+              }
+
+              &.mobile {
+                display: none;
               }
             }
           }
@@ -270,11 +282,13 @@
             border-bottom: 3px solid var(--red);
             text-align: center;
             font-size: 1.5rem;
+            padding-right: 5px;
 
             input {
               font-weight: bold;
               width: 3rem;
               -moz-appearance: textfield;
+              appearance: textfield;
               font-size: 2rem;
               text-align: right;
               background: none;
@@ -286,6 +300,7 @@
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
               -webkit-appearance: none;
+              appearance: none;
               margin: 0;
             }
           }
@@ -397,6 +412,7 @@
           border-radius: 5px;
           transition: 0.3s ease background;
           margin: 5px 0;
+          position: relative;
 
           &:hover {
             // rgb(22, 26, 29)
@@ -410,9 +426,13 @@
           }
 
           .image {
-            width: 25%;
+            // width: 25%;
+            width: 50%;
             height: 100%;
-            position: relative;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
 
             &::after {
               content: "";
@@ -420,11 +440,17 @@
               height: 100%;
               position: absolute;
               background: var(--blue);
+              // background: linear-gradient(
+              //   270deg,
+              //   rgba(22, 26, 29, 1) 0%,
+              //   rgba(22, 26, 29, 0.9) 15%,
+              //   rgba(22, 26, 29, 0) 100%
+              // );
               background: linear-gradient(
                 270deg,
                 rgba(22, 26, 29, 1) 0%,
-                rgba(22, 26, 29, 0.9) 15%,
-                rgba(22, 26, 29, 0) 100%
+                rgba(22, 26, 29, 1) 15%,
+                rgba(22, 26, 29, 0.8) 100%
               );
               top: 0;
               left: 0;
@@ -465,12 +491,314 @@
             margin-left: 25px;
             font-family: "Bebas Neue";
             flex: 1;
+            z-index: 1;
           }
 
           p {
             margin-right: 25px;
             font-size: 1.5rem;
             color: var(--white);
+            z-index: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .content {
+    section.list {
+      .food-list {
+        .item {
+          height: 150px;
+
+          span.delete {
+            font-size: 1.5rem;
+          }
+
+          .image {
+            width: 20%;
+          }
+
+          .info {
+            padding: 15px;
+            // margin: 0 15px;
+
+            h2.title {
+              font-size: 2.25rem;
+              margin-bottom: 10px;
+            }
+
+            .nutrients {
+              .nutrient {
+                margin-right: 10px;
+                p.desc {
+                  font-size: 1.25rem;
+                }
+                p.data {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+
+          .weight {
+            margin-right: 15px;
+
+            p.title {
+              font-size: 1.75rem;
+              margin-bottom: 5px;
+            }
+
+            input {
+              font-size: 1.75rem;
+              width: 2.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .content {
+    section.total {
+      .chart-wrapper {
+        .chart {
+          width: 200px;
+          height: 200px;
+
+          &::after {
+            width: 150px;
+            height: 150px;
+          }
+        }
+      }
+    }
+
+    section.list {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        a.add-food {
+          margin-left: 25px;
+        }
+      }
+
+      .food-list {
+        .item {
+          .info {
+            padding: 5px;
+            .nutrients {
+              justify-content: space-evenly;
+              .nutrient {
+                p.desc {
+                  font-size: 1.15rem;
+                }
+                p.data {
+                  font-size: 1.3rem;
+                }
+              }
+            }
+          }
+
+          .weight {
+            margin-right: 10px;
+
+            p.title {
+              font-size: 1.5rem;
+              margin-bottom: 5px;
+            }
+
+            p.input {
+              input {
+                font-size: 1.5rem;
+                width: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 610px) {
+  .content {
+    section.list {
+      .food-list {
+        .item {
+          height: 100px;
+
+          .info {
+            h2.title {
+              font-size: 2rem;
+              margin-bottom: 0;
+            }
+            .nutrients {
+              .nutrient:not(:last-child) {
+                display: none;
+              }
+
+              .nutrient.mobile {
+                display: block;
+              }
+            }
+          }
+
+          .weight {
+            margin-right: calc(1.5rem + 5px);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .content {
+    section.list {
+      .food-list {
+        .item {
+          .info {
+            padding: 5px;
+
+            h2.title {
+              font-size: 1.75rem;
+            }
+
+            .nutrients {
+              justify-content: space-evenly;
+              .nutrient {
+                p.desc {
+                  font-size: 1rem;
+                }
+                p.data {
+                  font-size: 1.15rem;
+                }
+              }
+            }
+          }
+
+          .weight {
+            p.title {
+              font-size: 1rem;
+              margin-bottom: 0px;
+            }
+
+            p.input {
+              font-size: 1.15rem;
+              input {
+                font-size: 1.15rem;
+                width: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 510px) {
+  .content {
+    section.list {
+      .food-list {
+        .item {
+          .image {
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            top: 0;
+
+            &::after {
+              background: linear-gradient(
+                270deg,
+                rgba(22, 26, 29, 1) 0%,
+                rgba(22, 26, 29, 1) 15%,
+                rgba(22, 26, 29, 0.8) 100%
+              );
+            }
+          }
+
+          .info {
+            padding: 10px;
+
+            h2.title {
+              font-size: 1.75rem;
+            }
+          }
+        }
+      }
+    }
+
+    section.search {
+      .wrapper {
+        h1 {
+          font-size: 2rem;
+        }
+
+        input {
+          font-size: 2rem;
+        }
+        .results {
+          .item {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            h2.title {
+              flex: 0;
+            }
+            p {
+              margin-left: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .content {
+    section.list {
+      .food-list {
+        .item {
+          .info {
+            padding: 5px;
+            h2.title {
+              font-size: 1.75rem;
+            }
+
+            .nutrients {
+              padding: 0;
+              .nutrient {
+                p.desc {
+                  font-size: 0.8rem;
+                }
+                p.data {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    section.search {
+      .wrapper {
+        .results {
+          .item {
+            h2.title {
+              font-size: 1.5rem;
+            }
+            p {
+              font-size: 1.25rem;
+            }
           }
         }
       }

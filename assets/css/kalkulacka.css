@@ -51,7 +51,7 @@
 }
 .content section.total .nutrients {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   width: 100%;
@@ -61,8 +61,12 @@
 .content section.total .nutrients .nutrient {
   text-align: center;
   color: var(--white);
-  margin: 10px 25px;
-  min-width: calc(30% - 50px);
+  margin: 10px 10px;
+  min-width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .content section.total .nutrients .nutrient p {
   font-family: "Bebas Neue";
@@ -183,8 +187,7 @@
   justify-content: center;
   color: var(--white);
   flex: 1;
-  padding: 25px 0;
-  margin: 0 25px;
+  padding: 25px;
   height: 100%;
 }
 .content section.list .food-list .item .info h2.title {
@@ -197,11 +200,12 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  padding: 0 5px;
+  width: 100%;
 }
 .content section.list .food-list .item .info .nutrients .nutrient {
   text-align: center;
   margin-right: 25px;
-  min-width: 25%;
 }
 .content section.list .food-list .item .info .nutrients .nutrient p.desc {
   font-weight: lighter;
@@ -210,6 +214,9 @@
 .content section.list .food-list .item .info .nutrients .nutrient p.data {
   font-size: 1.75rem;
   font-weight: bold;
+}
+.content section.list .food-list .item .info .nutrients .nutrient.mobile {
+  display: none;
 }
 .content section.list .food-list .item .weight {
   margin-right: 25px;
@@ -229,11 +236,14 @@
   border-bottom: 3px solid var(--red);
   text-align: center;
   font-size: 1.5rem;
+  padding-right: 5px;
 }
 .content section.list .food-list .item .weight p.input input {
   font-weight: bold;
   width: 3rem;
   -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
   font-size: 2rem;
   text-align: right;
   background: none;
@@ -244,6 +254,7 @@
 .content section.list .food-list .item .weight p.input input::-webkit-outer-spin-button,
 .content section.list .food-list .item .weight p.input input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .content section.search {
@@ -342,6 +353,7 @@
   border-radius: 5px;
   transition: 0.3s ease background;
   margin: 5px 0;
+  position: relative;
 }
 .content section.search .wrapper .results .item:hover {
   background-color: rgb(24, 28, 31);
@@ -350,9 +362,12 @@
   opacity: 1;
 }
 .content section.search .wrapper .results .item .image {
-  width: 25%;
+  width: 50%;
   height: 100%;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
 }
 .content section.search .wrapper .results .item .image::after {
   content: "";
@@ -360,7 +375,7 @@
   height: 100%;
   position: absolute;
   background: var(--blue);
-  background: linear-gradient(270deg, rgb(22, 26, 29) 0%, rgba(22, 26, 29, 0.9) 15%, rgba(22, 26, 29, 0) 100%);
+  background: linear-gradient(270deg, rgb(22, 26, 29) 0%, rgb(22, 26, 29) 15%, rgba(22, 26, 29, 0.8) 100%);
   top: 0;
   left: 0;
 }
@@ -393,9 +408,193 @@
   margin-left: 25px;
   font-family: "Bebas Neue";
   flex: 1;
+  z-index: 1;
 }
 .content section.search .wrapper .results .item p {
   margin-right: 25px;
   font-size: 1.5rem;
   color: var(--white);
+  z-index: 1;
+}
+
+@media only screen and (max-width: 940px) {
+  .content section.list .food-list .item {
+    height: 150px;
+  }
+  .content section.list .food-list .item span.delete {
+    font-size: 1.5rem;
+  }
+  .content section.list .food-list .item .image {
+    width: 20%;
+  }
+  .content section.list .food-list .item .info {
+    padding: 15px;
+  }
+  .content section.list .food-list .item .info h2.title {
+    font-size: 2.25rem;
+    margin-bottom: 10px;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient {
+    margin-right: 10px;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.desc {
+    font-size: 1.25rem;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.data {
+    font-size: 1.5rem;
+  }
+  .content section.list .food-list .item .weight {
+    margin-right: 15px;
+  }
+  .content section.list .food-list .item .weight p.title {
+    font-size: 1.75rem;
+    margin-bottom: 5px;
+  }
+  .content section.list .food-list .item .weight input {
+    font-size: 1.75rem;
+    width: 2.5rem;
+  }
+}
+@media only screen and (max-width: 690px) {
+  .content section.total .chart-wrapper .chart {
+    width: 200px;
+    height: 200px;
+  }
+  .content section.total .chart-wrapper .chart::after {
+    width: 150px;
+    height: 150px;
+  }
+  .content section.list header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .content section.list header a.add-food {
+    margin-left: 25px;
+  }
+  .content section.list .food-list .item .info {
+    padding: 5px;
+  }
+  .content section.list .food-list .item .info .nutrients {
+    justify-content: space-evenly;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.desc {
+    font-size: 1.15rem;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.data {
+    font-size: 1.3rem;
+  }
+  .content section.list .food-list .item .weight {
+    margin-right: 10px;
+  }
+  .content section.list .food-list .item .weight p.title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+  .content section.list .food-list .item .weight p.input input {
+    font-size: 1.5rem;
+    width: 2rem;
+  }
+}
+@media only screen and (max-width: 610px) {
+  .content section.list .food-list .item {
+    height: 100px;
+  }
+  .content section.list .food-list .item .info h2.title {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient:not(:last-child) {
+    display: none;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient.mobile {
+    display: block;
+  }
+  .content section.list .food-list .item .weight {
+    margin-right: calc(1.5rem + 5px);
+  }
+}
+@media only screen and (max-width: 575px) {
+  .content section.list .food-list .item .info {
+    padding: 5px;
+  }
+  .content section.list .food-list .item .info h2.title {
+    font-size: 1.75rem;
+  }
+  .content section.list .food-list .item .info .nutrients {
+    justify-content: space-evenly;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.desc {
+    font-size: 1rem;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.data {
+    font-size: 1.15rem;
+  }
+  .content section.list .food-list .item .weight p.title {
+    font-size: 1rem;
+    margin-bottom: 0px;
+  }
+  .content section.list .food-list .item .weight p.input {
+    font-size: 1.15rem;
+  }
+  .content section.list .food-list .item .weight p.input input {
+    font-size: 1.15rem;
+    width: 1.5rem;
+  }
+}
+@media only screen and (max-width: 510px) {
+  .content section.list .food-list .item .image {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+  }
+  .content section.list .food-list .item .image::after {
+    background: linear-gradient(270deg, rgb(22, 26, 29) 0%, rgb(22, 26, 29) 15%, rgba(22, 26, 29, 0.8) 100%);
+  }
+  .content section.list .food-list .item .info {
+    padding: 10px;
+  }
+  .content section.list .food-list .item .info h2.title {
+    font-size: 1.75rem;
+  }
+  .content section.search .wrapper h1 {
+    font-size: 2rem;
+  }
+  .content section.search .wrapper input {
+    font-size: 2rem;
+  }
+  .content section.search .wrapper .results .item {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .content section.search .wrapper .results .item h2.title {
+    flex: 0;
+  }
+  .content section.search .wrapper .results .item p {
+    margin-left: 25px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .content section.list .food-list .item .info {
+    padding: 5px;
+  }
+  .content section.list .food-list .item .info h2.title {
+    font-size: 1.75rem;
+  }
+  .content section.list .food-list .item .info .nutrients {
+    padding: 0;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.desc {
+    font-size: 0.8rem;
+  }
+  .content section.list .food-list .item .info .nutrients .nutrient p.data {
+    font-size: 1rem;
+  }
+  .content section.search .wrapper .results .item h2.title {
+    font-size: 1.5rem;
+  }
+  .content section.search .wrapper .results .item p {
+    font-size: 1.25rem;
+  }
 }
