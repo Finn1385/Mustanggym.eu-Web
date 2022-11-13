@@ -73,7 +73,6 @@
 
         #mainDialog .logo {
             width: 350px;
-            /* height: 350px; */
             max-width: 100%;
             max-height: 100%;
             position: relative;
@@ -107,7 +106,7 @@
             margin: 25px 0;
         }
 
-        #passArea input {
+        #passArea input#pass {
             background: none;
             outline: none;
             border: 2px solid var(--red);
@@ -116,21 +115,40 @@
             width: 100%;
             padding: 5px;
             border-radius: 5px;
-            margin-bottom: 1rem;
             text-align: center;
+        }
+
+        #passArea .remember-check {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin-top: 1rem;
+        }
+
+        #passArea .remember-check input {
+            cursor: pointer;
+        }
+
+        #passArea .remember-check label {
+            font-size: 1.25rem;
+            margin-left: 15px;
+            color: var(--white);
+            cursor: pointer;
+            transition: .3s ease color;
         }
 
         .alerts {
             height: 1rem;
             text-align: center;
-            margin-bottom: 5px;
+            margin: 10px 0 15px;
         }
 
         #submitPass {
             font-size: 2rem;
             color: white;
             border: 2px solid var(--red);
-            margin-top: 1rem;
             padding: 5px 15px;
             background: none;
             outline: none;
@@ -183,6 +201,10 @@
             <h1>Prihlásenie</h1>
             <div id="passArea">
                 <input id="pass" type="password" name="pass" placeholder="Zadajte heslo" autofocus>
+                <div class="remember-check">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Zapamätať heso</label>
+                </div>
                 <div class="alerts">
                     <div class="messages">
                         <span id="invalidPass" class="error">Zadali ste nesprávne heslo, skúste to znovu</span>
@@ -206,6 +228,13 @@
         </div>
     </div>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var passEl = document.getElementById('pass');
+            if (getCookie("password")) {
+                passEl.value = getCookie("password");
+            }
+        });
+
         (function () {
 
             var pl = "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";
@@ -216,6 +245,7 @@
             var trycatcherror = document.getElementById('trycatcherror');
             var successEl = document.getElementById('success');
             var contentFrame = document.getElementById('contentFrame');
+            var rememberBox = document.getElementById("remember");
 
             // Sanity checks
 
@@ -327,6 +357,8 @@
                     invalidPassEl.style.display = "none";
                     trycatcherror.style.display = "none";
                     successEl.style.display = "inline";
+                    if (rememberBox.checked)
+                        document.cookie = "password=" + passEl.value + "; max-age=" + 60 * 60 * 24 * 365 + "; secure; samesite=lax";
                     setTimeout(function () {
                         dialogWrap.style.opacity = "0";
                         dialogWrap.style.pointerEvents = "none";
@@ -357,6 +389,23 @@
                 }
             }
         })();
+
+        function getCookie(cname) {
+            // https://www.w3schools.com/js/js_cookies.asp
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
     </script>
 </body>
 
