@@ -266,7 +266,10 @@ const searchFood = (query) => {
   const results = document.getElementById("search-results");
   const notFoundEl = document.querySelector("#search-results .not-found");
   const filteredList = FOOD_LIST.filter((item) => {
-    return urlify(item[2].toLowerCase()).includes(urlify(query.toLowerCase()));
+    return (
+      urlify(item[2].toLowerCase()).includes(urlify(query.toLowerCase())) ||
+      urlify(item[7].toLowerCase()).includes(urlify(query.toLowerCase()))
+    );
   });
 
   if (query.trim().length === 0) {
