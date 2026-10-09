@@ -52,7 +52,7 @@ scripts/               backup + create-admin CLIs (bundled to dist/scripts for t
    - `BETTER_AUTH_URL` and `SITE_URL` – `https://mustanggym.eu`
    - `ADMIN_EMAIL`, `ADMIN_PASSWORD` – only for the first deploy; remove them after logging in
 4. **Domains:** `https://mustanggym.eu,https://www.mustanggym.eu`, redirect to non-www. Coolify's proxy issues the certificates.
-5. **Health check:** path `/api/health` (the image also defines a Docker `HEALTHCHECK`).
+5. **Health check:** path `/api/health`, port `3000`. Coolify runs it with `curl` inside the container, which the image includes. The image also defines its own Docker `HEALTHCHECK`.
 6. **Scheduled task** (nightly backup): command `node scripts/backup.mjs`, frequency `0 3 * * *`. It keeps the newest 14 archives in `/data/backups`; copy them off the server from time to time (or add an S3 sync). The admin overview also has a **Stiahnuť zálohu** button.
 7. Keep a **single replica**: SQLite is a file on one volume.
 

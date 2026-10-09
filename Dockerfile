@@ -24,6 +24,11 @@ ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0 \
     DATA_DIR=/data
 
+# curl: Coolify's health check runs `curl` (or `wget`) inside the container; the slim image has neither.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN groupadd --system --gid 1001 nodejs \
  && useradd --system --uid 1001 --gid nodejs --no-create-home nextjs \
  && mkdir -p /data \
@@ -42,7 +47,7 @@ VOLUME ["/data"]
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD curl -fsS http://127.0.0.1:3000/api/health || exit 1
 
 # Migrations, first-run seed and the optional first admin run inside the server (instrumentation.ts).
 CMD ["node", "server.js"]
