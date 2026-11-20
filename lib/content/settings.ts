@@ -33,6 +33,18 @@ export const treningyPageSchema = z.object({
   intro: z.string().trim().max(400),
 });
 
+/** A short "what's new" line on the home page, e.g. a newly launched class. Hides itself after `until`. */
+export const announcementSchema = z.object({
+  enabled: z.boolean(),
+  label: z.string().trim().min(1).max(20),
+  text: z.string().trim().max(120),
+  href: z.union([z.literal(""), z.string().regex(/^\/[^\s]*$/, "musí začínať lomkou, napr. /treningy"), z.url({ protocol: /^https?$/ })]),
+  /** Last day it is shown (YYYY-MM-DD, gym's time zone); empty = until switched off. */
+  until: z.union([z.literal(""), z.iso.date()]),
+  /** Class marked "Nové" in the timetables while the announcement is shown. */
+  classId: z.number().int().nullable(),
+});
+
 /** Which gallery image each page uses as its hero. */
 export const heroesSchema = z.object({
   home: z.number().int().nullable(),
@@ -45,12 +57,14 @@ export const settingSchemas = {
   fitness: fitnessPageSchema,
   treningy: treningyPageSchema,
   heroes: heroesSchema,
+  announcement: announcementSchema,
 } as const;
 
 export type SettingKey = keyof typeof settingSchemas;
 export type SettingValue<K extends SettingKey> = z.infer<(typeof settingSchemas)[K]>;
 export type Site = SettingValue<"site">;
 export type Feature = z.infer<typeof featureSchema>;
+export type Announcement = SettingValue<"announcement">;
 
 export const settingDefaults: { [K in SettingKey]: SettingValue<K> } = {
   site: {
@@ -93,4 +107,5 @@ export const settingDefaults: { [K in SettingKey]: SettingValue<K> } = {
     intro: "Skupinové hodiny pod vedením certifikovaného trénera. Stačí prísť pár minút pred začiatkom.",
   },
   heroes: { home: null, fitness: null, treningy: null },
+  announcement: { enabled: false, label: "Novinka", text: "", href: "/treningy", until: "", classId: null },
 };

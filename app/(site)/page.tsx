@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AnnouncementLine, NewTag } from "@/components/site/announcement";
 import { Contact } from "@/components/site/contact";
 import { HoursStrip } from "@/components/site/hours";
 import { PricePanel } from "@/components/site/price-panel";
@@ -7,6 +8,7 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { StatusHeadline } from "@/components/site/today-status";
 import { UpdatedStamp } from "@/components/site/updated-stamp";
 import {
+  getActiveAnnouncement,
   getHero,
   getHours,
   getPrices,
@@ -33,6 +35,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   const treningy = getSetting("treningy");
   const updates = getSectionUpdates();
   const hero = getHero("home");
+  const announcement = getActiveAnnouncement(now);
   const fitnessHero = getHero("fitness");
   const treningyHero = getHero("treningy");
 
@@ -63,6 +66,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
         <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink via-ink/50 to-ink/5" />
 
         <div className="shell relative pt-32 pb-12 md:pb-16">
+          {announcement && <AnnouncementLine announcement={announcement} />}
           <div className="rail rail-draw">
             <p className="text-lg text-chalk/90 md:text-2xl">Dnes je {DAYS[status.day].name.toLowerCase()}</p>
             <StatusHeadline hours={hours} initial={status} live={!frozen} />
@@ -81,6 +85,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
                         </time>
                         <span className="text-lg md:text-xl">
                           {s.className}
+                          {s.classId === announcement?.classId && <NewTag />}
                           {started && <span className="ml-2 text-sm">už začal</span>}
                         </span>
                       </li>

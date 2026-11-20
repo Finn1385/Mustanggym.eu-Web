@@ -1,3 +1,4 @@
+import { NewTag } from "@/components/site/announcement";
 import { DAYS, displayTime } from "@/lib/hours";
 import type { Slot } from "@/lib/content/queries";
 
@@ -6,7 +7,7 @@ function bySlotDay(slots: Slot[]) {
 }
 
 /** Week grid on desktop, a day-by-day list on phones. Today is marked with the red rail. */
-export function Timetable({ slots, today }: { slots: Slot[]; today: number }) {
+export function Timetable({ slots, today, newClassId = null }: { slots: Slot[]; today: number; newClassId?: number | null }) {
   const days = bySlotDay(slots);
   // Weekend columns only appear when there is something on them.
   const visible = DAYS.map((_, d) => d).filter((d) => d < 5 || days[d].length > 0 || d === today);
@@ -34,7 +35,10 @@ export function Timetable({ slots, today }: { slots: Slot[]; today: number }) {
                     <time dateTime={s.time} className="block font-display text-5xl leading-none font-bold">
                       {displayTime(s.time)}
                     </time>
-                    <span className="mt-1 block text-lg">{s.className}</span>
+                    <span className="mt-1 block text-lg">
+                      {s.className}
+                      {s.classId === newClassId && <NewTag />}
+                    </span>
                     {s.note && <span className="block text-sm text-ash">{s.note}</span>}
                   </li>
                 ))}
@@ -65,6 +69,7 @@ export function Timetable({ slots, today }: { slots: Slot[]; today: number }) {
                       </time>
                       <span className="text-lg">
                         {s.className}
+                        {s.classId === newClassId && <NewTag />}
                         {s.note && <span className="block text-sm text-ash">{s.note}</span>}
                       </span>
                     </li>

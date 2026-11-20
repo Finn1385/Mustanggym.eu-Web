@@ -2,10 +2,11 @@ import "server-only";
 import { cache } from "react";
 import { asc, eq, inArray } from "drizzle-orm";
 import { db, schema as s } from "@/db";
-import type { DayHours } from "@/lib/hours";
+import { TIME_ZONE, type DayHours } from "@/lib/hours";
 import {
   settingDefaults,
   settingSchemas,
+  type Announcement,
   type SettingKey,
   type SettingValue,
 } from "./settings";
@@ -91,6 +92,16 @@ export const getSectionUpdates = cache((): Partial<Record<Section, Date>> => {
   const rows = db.select().from(s.sectionUpdates).all();
   return Object.fromEntries(rows.map((r) => [r.section, r.updatedAt]));
 });
+
+/** The announcement when it's switched on, has text and hasn't run past its last day; otherwise null. */
+export function getActiveAnnouncement(now: Date = new Date()): Announcement | null {
+  const a = getSetting("announcement");
+  if (!a.enabled || !a.text) return null;
+  // en-CA formats as YYYY-MM-DD, which compares correctly as a string.
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE }).format(now);
+  if (a.until && today > a.until) return null;
+  return a;
+}
 
 export function getHero(page: "home" | "fitness" | "treningy") {
   return getImage(getSetting("heroes")[page]);

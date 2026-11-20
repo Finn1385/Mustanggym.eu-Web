@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { Timetable } from "@/components/site/timetable";
 import { UpdatedStamp } from "@/components/site/updated-stamp";
 import { galleryPhotos } from "@/lib/content/gallery";
-import { getHero, getSectionUpdates, getSetting, getTimetable } from "@/lib/content/queries";
+import { getActiveAnnouncement, getHero, getSectionUpdates, getSetting, getTimetable } from "@/lib/content/queries";
 import { localNow } from "@/lib/hours";
 import { resolveNow } from "@/lib/now";
 import { breadcrumbJsonLd } from "@/lib/seo/jsonld";
@@ -34,7 +34,7 @@ export default async function TreningyPage({ searchParams }: PageProps<"/trening
         <SectionHeading id="rozvrh-title" aside={<UpdatedStamp date={updates.timetable} className="text-ash" />}>
           Rozvrh
         </SectionHeading>
-        <Timetable slots={getTimetable()} today={today} />
+        <Timetable slots={getTimetable()} today={today} newClassId={getActiveAnnouncement(now)?.classId} />
       </section>
 
       {photos.length > 0 && (

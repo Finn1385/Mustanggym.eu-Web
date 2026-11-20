@@ -9,7 +9,7 @@ import { saveSetting } from "@/lib/admin/actions/settings";
 import type { ActionResult } from "@/lib/admin/result";
 import type { SettingValue } from "@/lib/content/settings";
 
-function useSettingForm<K extends "site" | "fitness" | "treningy">(key: K, initial: SettingValue<K>) {
+function useSettingForm<K extends "site" | "fitness" | "treningy" | "announcement">(key: K, initial: SettingValue<K>) {
   const [value, setValue] = useState(initial);
   const [saved, setSaved] = useState(() => JSON.stringify(initial));
   const [result, setResult] = useState<ActionResult>(null);
@@ -151,6 +151,54 @@ export function TreningyTextsForm({ initial }: { initial: SettingValue<"treningy
         </Field>
       </Panel>
       <SaveBar pending={f.pending} result={f.result} viewHref="/treningy" dirty={f.dirty} />
+    </form>
+  );
+}
+
+export function AnnouncementForm({ initial, classes }: {
+  initial: SettingValue<"announcement">;
+  classes: { id: number; name: string }[];
+}) {
+  const f = useSettingForm("announcement", initial);
+  const v = f.value;
+  return (
+    <form onSubmit={(e) => f.submit(e)}>
+      <Panel
+        title="Novinka na úvode"
+        description="Jeden nenápadný riadok nad stavom otvorenia na úvodnej stránke. Vybraný tréning dostane v rozvrhu značku „Nové“."
+      >
+        <label className="mb-5 flex items-center gap-2 text-sm font-semibold">
+          <input type="checkbox" checked={v.enabled} onChange={(e) => f.patch({ enabled: e.target.checked })} className="size-4 accent-mustang" />
+          Zobraziť novinku
+        </label>
+        <div className="grid gap-5 sm:grid-cols-[10rem_1fr]">
+          <Field label="Štítok">
+            <input value={v.label} required maxLength={20} onChange={(e) => f.patch({ label: e.target.value })} className={inputClass} />
+          </Field>
+          <Field label="Text" hint="Krátko, ideálne na jeden riadok.">
+            <input value={v.text} required={v.enabled} maxLength={120} onChange={(e) => f.patch({ text: e.target.value })} className={inputClass} />
+          </Field>
+          <Field label="Odkaz" hint="Napr. /treningy. Prázdne = bez odkazu." className="sm:col-span-2">
+            <input value={v.href} onChange={(e) => f.patch({ href: e.target.value.trim() })} className={inputClass} />
+          </Field>
+          <Field label="Zobrazovať do" hint="Vrátane tohto dňa. Prázdne = kým ju nevypnete.">
+            <input type="date" value={v.until} onChange={(e) => f.patch({ until: e.target.value })} className={inputClass} />
+          </Field>
+          <Field label="Označiť v rozvrhu ako „Nové“">
+            <select
+              value={v.classId ?? ""}
+              onChange={(e) => f.patch({ classId: e.target.value ? Number(e.target.value) : null })}
+              className={inputClass}
+            >
+              <option value="">Žiadny tréning</option>
+              {classes.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </Field>
+        </div>
+      </Panel>
+      <SaveBar pending={f.pending} result={f.result} viewHref="/" dirty={f.dirty} />
     </form>
   );
 }

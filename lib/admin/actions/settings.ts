@@ -6,7 +6,7 @@ import { fail, ok, type ActionResult } from "@/lib/admin/result";
 import { requireAdmin } from "@/lib/admin/session";
 import { settingSchemas, type SettingKey } from "@/lib/content/settings";
 
-const EDITABLE = ["site", "fitness", "treningy"] as const satisfies SettingKey[];
+const EDITABLE = ["site", "fitness", "treningy", "announcement"] as const satisfies SettingKey[];
 
 export async function saveSetting(key: (typeof EDITABLE)[number], value: unknown): Promise<ActionResult> {
   const user = await requireAdmin();
