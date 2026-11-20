@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { CalendarDays, Clock, Dumbbell, ExternalLink, FileText, Images, LayoutDashboard, LogOut, Tag, UserCog } from "lucide-react";
+import { CalendarDays, Clock, Dumbbell, ExternalLink, FileText, ImageDown, Images, LayoutDashboard, LogOut, Tag, UserCog } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 const ITEMS = [
   { href: "/admin", label: "Prehľad", Icon: LayoutDashboard },
   { href: "/admin/hodiny", label: "Otváracie hodiny", Icon: Clock },
   { href: "/admin/rozvrh", label: "Rozvrh", Icon: CalendarDays },
+  { href: "/admin/banner", label: "Facebook banner", Icon: ImageDown },
   { href: "/admin/treningy", label: "Tréningy", Icon: Dumbbell },
   { href: "/admin/cennik", label: "Cenník", Icon: Tag },
   { href: "/admin/galeria/fitness", label: "Galéria fitness", Icon: Images },
